@@ -1,4 +1,4 @@
-// Score variables
+// Declaring score variables
 let playerScore = 0;
 let compScore = 0;
 
@@ -10,8 +10,9 @@ const getComputerChoice = () => {
 
 // Function that plays a single round of the game
 const playRound = (playerSelection, computerSelection) => {
+    console.log('1', playerSelection, '2', computerSelection)
     if (playerSelection === computerSelection) {
-        return "It's a Tie!";
+        return `It's a Tie! You both picked ${playerSelection}`;
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
         playerScore++;
         return "You win! Rock breaks Scissors!";

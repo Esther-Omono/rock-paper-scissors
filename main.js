@@ -1,8 +1,8 @@
-// Declaring score variables
+// Declaring score variables for player and computer
 let playerScore = 0;
 let compScore = 0;
 
-// Function to get the Computer's choice"
+// Function to get the Computer's choice
 const getComputerChoice = () => {
     const randomChoice = ["rock", "paper", "scissors"];
     return randomChoice[Math.floor(Math.random() * randomChoice.length)];

@@ -1,59 +1,104 @@
-// Declaring score variables for player and computer
-let playerScore = 0;
-let compScore = 0;
+function playGame() {
+    // Players score variable
+    let humanScore = 0;
+    let computerScore = 0;
 
-// Function to get the Computer's choice
-const getComputerChoice = () => {
-    const randomChoice = ["rock", "paper", "scissors"];
-    return randomChoice[Math.floor(Math.random() * randomChoice.length)];
-}
+    // Function to get human's choice
+    const getHumanChoice = () => {
+        let humanChoice = prompt("Pick one: rock, paper, scissors");
+        console.log(`Player Choice: ${humanChoice}`);
+        return humanChoice;
+    }
 
-// Function that plays a single round of the game
-const playRound = (playerSelection, computerSelection) => {
-    console.log('1', playerSelection, '2', computerSelection)
-    if (playerSelection === computerSelection) {
-        return `It's a Tie! You both picked ${playerSelection}`;
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        playerScore++;
-        return "You win! Rock breaks Scissors!";
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        playerScore++;
-        return "You win! Paper covers Rock";
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        playerScore++;
-        return "You win! Scissors cuts Paper";
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        compScore++;
-        return `You lose! ${computerSelection} covers ${playerSelection}`;
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        compScore++;
-        return `You lose! ${computerSelection} cuts ${playerSelection}`;
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        compScore++;
-        return `You lose! ${computerSelection} breaks ${playerSelection}`;
+    // Function to get computer's choice
+    const getComputerChoice = () => {
+        const randomChoice = ["rock", "paper", "scissors"];
+        const computerChoice = randomChoice[Math.floor(Math.random() * randomChoice.length)];
+        console.log(`Computer Choice: ${computerChoice}`);
+        return computerChoice;
+    }
+
+    // Function to play a single round
+    function playRound(theHumanChoice, theComputerChoice) {
+        // Convert both choices to lowercase for case-insensitivity
+        theHumanChoice = theHumanChoice.toLowerCase();
+        theComputerChoice = theComputerChoice.toLowerCase();
+
+        switch (theHumanChoice) {
+            case "rock":
+                switch (theComputerChoice) {
+                    case "rock":
+                        console.log("It's a tie! You both picked Rock!");
+                        break;
+                    case "paper":
+                        computerScore++;
+                        console.log("Computer wins! Paper covers Rock!");
+                        break;
+                    case "scissors":
+                        humanScore++;
+                        console.log("You win! Rock breaks Scissors!");
+                        break;
+                }
+                break;
+        
+            case "paper":
+                switch (theComputerChoice) {
+                    case "rock":
+                        humanScore++;
+                        console.log("You win! Paper covers Rock!");
+                        break;
+                    case "paper":
+                        console.log("It's a tie! You both picked paper!");
+                        break;
+                    case "scissors":
+                        computerScore++;
+                        console.log("Computer wins! Scissors cuts paper!");
+                        break;
+                }
+                break;
+
+            case "scissors":
+                switch (theComputerChoice) {
+                    case "rock":
+                        computerScore++;
+                        console.log("Computer wins! Rock breaks Scissors!");
+                        break;
+                    case "paper":
+                        humanScore++;
+                        console.log("You win! Scissors cuts Paper!");
+                        break;
+                    case "scissors":
+                        console.log("It's a tie! You both picked scissors!");
+                        break;
+                }
+                break;
+
+            default:
+                //return "Invalid choice!";
+                console.log("Invalid choice. Please choose 'rock', 'paper', or 'scissors'.");
+        }
+
+        // Log the updated scores
+        console.log(`Score - Human: ${humanScore}, Computer: ${computerScore}`);
+    };
+
+    // To play 5 rounds
+    for (i = 0; i < 5; i++) {
+        console.log(`Round ${i + 1}`);
+        const theHumanChoice = getHumanChoice();
+        const theComputerChoice = getComputerChoice();
+        playRound(theHumanChoice, theComputerChoice);
+    }
+
+    // Declaring the winner
+    if (humanScore > computerScore) {
+        console.log("Congratulations! You won the game!");
+    } else if (computerScore > humanScore) {
+        console.log("Computer wins the game! Better luck next time.");
     } else {
-        return "Select one of the options!";
+        console.log("The game is a tie!");
     }
-}
+};
 
-/*
-Function that plays 5 rounds of the game and keeps scores to 
-report a winner or loser at the end
-*/
-const game = () => {
-    for(let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Rock, Paper or Scissors? Pick One!").toLowerCase();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
-
-    if (playerScore > compScore) {
-        return "You beat the computer! Hurray!";
-    } else if (playerScore < compScore) {
-        return "Arrgh, You lost to the computer! Sad!";
-    } else {
-        return "You tied with the computer!";
-    }
-}
-
-console.log(game());
+// Start the Game
+playGame();

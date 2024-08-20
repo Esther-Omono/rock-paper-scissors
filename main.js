@@ -1,4 +1,4 @@
-
+function playGame() {
     // Players score variable
     let humanScore = 0;
     let computerScore = 0;
@@ -80,13 +80,25 @@
 
         // Log the updated scores
         console.log(`Score - Human: ${humanScore}, Computer: ${computerScore}`);
-
     };
 
+    // To play 5 rounds
+    for (i = 0; i < 5; i++) {
+        console.log(`Round ${i + 1}`);
+        const theHumanChoice = getHumanChoice();
+        const theComputerChoice = getComputerChoice();
+        playRound(theHumanChoice, theComputerChoice);
+    }
 
+    // Declaring the winner
+    if (humanScore > computerScore) {
+        console.log("Congratulations! You won the game!");
+    } else if (computerScore > humanScore) {
+        console.log("Computer wins the game! Better luck next time.");
+    } else {
+        console.log("The game is a tie!");
+    }
+};
 
-
-const theHumanChoice = getHumanChoice();
-const theComputerChoice = getComputerChoice();
-
-playRound(theHumanChoice, theComputerChoice);
+// Start the Game
+playGame();

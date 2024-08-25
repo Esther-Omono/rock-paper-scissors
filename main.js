@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update the result message in the DOM
         document.getElementById("round-result").textContent = resultMessage;
+        document.getElementById("choices").textContent = `You: ${theHumanChoice}, Computer: ${theComputerChoice}`;
         document.getElementById("score").textContent = `Score - Human: ${humanScore}, Computer: ${computerScore}`;
 
         // Check if a player has reached 5 points
@@ -93,11 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("paper").addEventListener("click", () => playRound("paper"));
     document.getElementById("scissors").addEventListener("click", () => playRound("scissors"));
 
-    // Event listeners for button clicks
-    document.getElementById("rock").addEventListener("click", () => playRound("rock"));
-    document.getElementById("paper").addEventListener("click", () => playRound("paper"));
-    document.getElementById("scissors").addEventListener("click", () => playRound("scissors"));
-
     // Restart game event listener
     document.getElementById("restart").addEventListener("click", () => {
         // Reset scores
@@ -108,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("round-result").textContent = "";
         document.getElementById("score").textContent = "Score - Human: 0, Computer: 0";
         document.getElementById("winner").textContent = "";
+        document.getElementById("choices").textContent = "";
 
         // Enable buttons
         document.getElementById("rock").disabled = false;

@@ -8,7 +8,7 @@ This is a simple Rock, Paper, Scissors game built using HTML, CSS, and JavaScrip
 - [Technologies Used](#technologies-used)
 - [How to Play](#how-to-play)
 - [Installation](#installation)
-- [Contributing](#contributing)
+- [Contribution](#contribution)
 - [Acknowledgement](#acknowledgement)
 
 ## Features
